@@ -1,0 +1,411 @@
+/* =============================================================
+   Haemoon Pharma Pvt. Ltd. — Global Styles & Design Tokens
+   ============================================================= */
+
+:root {
+  /* ---- Brand palette: blue / teal / white ---- */
+  --teal-400: #18c2d4;
+  --teal-500: #0fb4c7;
+  --teal-600: #0a96a8;
+  --blue-500: #0b6e8f;
+  --blue-600: #0b5e8f;
+  --blue-700: #0a4a72;
+  --blue-900: #07314c;
+  --ink: #0c2233;
+
+  /* ---- Neutral scale ---- */
+  --white: #ffffff;
+  --paper: #f6fafc;
+  --paper-2: #eef6f9;
+  --line: #e2ecf1;
+  --line-2: #d4e3ea;
+
+  /* ---- Semantic tokens ---- */
+  --text: #4a5b66;
+  --text-strong: #0c2233;
+  --text-muted: #738491;
+  --heading: #0c2233;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --border: var(--line);
+  --primary: var(--blue-500);
+  --primary-strong: var(--blue-700);
+  --accent: var(--teal-500);
+
+  /* ---- Gradients ---- */
+  --grad-brand: linear-gradient(135deg, var(--teal-500) 0%, var(--blue-600) 100%);
+  --grad-brand-soft: linear-gradient(135deg, #1cc7d8 0%, #0c6f9a 100%);
+  --grad-deep: linear-gradient(150deg, #0a4a72 0%, #07314c 60%, #0a3550 100%);
+  --grad-paper: linear-gradient(180deg, #f6fafc 0%, #ffffff 100%);
+  --grad-text: linear-gradient(120deg, #0fb4c7 0%, #0b5e8f 100%);
+
+  /* ---- Shadows ---- */
+  --shadow-xs: 0 1px 2px rgba(12, 34, 51, 0.06);
+  --shadow-sm: 0 4px 14px rgba(12, 34, 51, 0.06);
+  --shadow-md: 0 12px 30px rgba(12, 34, 51, 0.08);
+  --shadow-lg: 0 24px 60px rgba(12, 34, 51, 0.12);
+  --shadow-brand: 0 18px 40px rgba(11, 110, 143, 0.28);
+  --shadow-teal: 0 14px 34px rgba(15, 180, 199, 0.28);
+
+  /* ---- Radii ---- */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ---- Layout ---- */
+  --container: 1240px;
+  --container-wide: 1400px;
+  --nav-h: 76px;
+  --section-y: 110px;
+
+  /* ---- Type ---- */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* ---- Transitions ---- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: light;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ---- Headings ---- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: var(--heading);
+  line-height: 1.15;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 5.2vw, 3.85rem);
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(15, 180, 199, 0.55);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(15, 180, 199, 0.22);
+  color: var(--blue-900);
+}
+
+/* =============================================================
+   Layout helpers
+   ============================================================= */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-inline: 14px;
+  }
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section--tight {
+  padding-block: 80px;
+}
+
+.section--paper {
+  background: var(--grad-paper);
+}
+
+.section--soft {
+  background: var(--paper);
+}
+
+/* =============================================================
+   Reusable UI: eyebrow, section heading, gradient text
+   ============================================================= */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-600);
+  background: rgba(15, 180, 199, 0.1);
+  border: 1px solid rgba(15, 180, 199, 0.22);
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+}
+
+.gradient-text {
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-head {
+  max-width: 720px;
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head__title {
+  margin-top: 18px;
+}
+
+.section-head__sub {
+  margin-top: 16px;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+/* =============================================================
+   Buttons
+   ============================================================= */
+.btn {
+  --btn-bg: var(--grad-brand);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.97rem;
+  line-height: 1;
+  padding: 15px 26px;
+  border-radius: var(--r-pill);
+  color: #fff;
+  background: var(--btn-bg);
+  box-shadow: var(--shadow-brand);
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    filter 0.3s var(--ease);
+  overflow: hidden;
+  white-space: nowrap;
+  isolation: isolate;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35), transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.6s var(--ease);
+  z-index: -1;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 50px rgba(11, 110, 143, 0.36);
+}
+
+.btn:hover::after {
+  transform: translateX(130%);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  color: var(--blue-700);
+  border: 1.6px solid var(--line-2);
+  box-shadow: none;
+}
+
+.btn--ghost:hover {
+  border-color: var(--teal-500);
+  color: var(--teal-600);
+  background: rgba(15, 180, 199, 0.06);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--light {
+  --btn-bg: #fff;
+  color: var(--blue-700);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--light:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.btn--outline-light {
+  --btn-bg: transparent;
+  color: #fff;
+  border: 1.6px solid rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+}
+
+.btn--outline-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.btn--sm {
+  padding: 11px 20px;
+  font-size: 0.9rem;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* =============================================================
+   Glass card surface
+   ============================================================= */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Decorative blurred blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Visually hidden but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Reduced motion: tame transforms */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-y: 76px;
+    --nav-h: 68px;
+  }
+  body {
+    font-size: 16px;
+  }
+}

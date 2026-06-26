@@ -1,0 +1,60 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-display);
+}
+
+.mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 6px 14px rgba(191, 146, 43, 0.32));
+  transition: transform 0.4s var(--ease);
+}
+
+.mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo:hover .mark {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.word {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.word strong {
+  font-size: 1.16rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--heading);
+}
+
+.word em {
+  font-style: normal;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal-600);
+}
+
+.light .word strong {
+  color: #fff;
+}
+
+.light .word em {
+  color: var(--teal-400);
+}
+
+@media (max-width: 420px) {
+  .word strong {
+    font-size: 1.05rem;
+  }
+}
