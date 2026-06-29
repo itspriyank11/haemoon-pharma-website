@@ -20,7 +20,6 @@ import { StaggerGroup, StaggerItem } from '../components/Common/StaggerGroup'
 import SmartImage from '../components/Common/SmartImage'
 
 import Hero from '../components/Hero/Hero'
-import Stats from '../components/Stats/Stats'
 import CTA from '../components/CTA/CTA'
 import ProductCard from '../components/ProductCard/ProductCard'
 
@@ -192,9 +191,6 @@ export default function About() {
           </StaggerGroup>
         </div>
       </section>
-
-      {/* ---- STATS ---- */}
-      <Stats />
 
       {/* ---- PRODUCT CATEGORIES PREVIEW ---- */}
       <section className="section" id="categories">
