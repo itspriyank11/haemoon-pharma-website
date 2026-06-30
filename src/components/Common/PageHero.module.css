@@ -98,10 +98,9 @@
 }
 
 .desc {
-  margin-top: 14px;
+  margin-top: 16px;
   max-width: 520px;
-  font-size: 0.98rem;
-  line-height: 1.7;
+  font-size: 1.08rem;
   color: var(--text-muted);
 }
 
