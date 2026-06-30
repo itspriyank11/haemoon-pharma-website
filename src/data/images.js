@@ -10,11 +10,15 @@
  * Haemoon Pharma product photography is imported from `src/assets/images/`.
  */
 
-// Real product photography (Haemoon Pharma Pvt. Ltd.)
-import calhaeD3 from '../assets/images/product-calhae-d3.jpeg'
-import cefhaeO from '../assets/images/product-cefhae-o.jpeg'
-import haemoOnXt from '../assets/images/product-haemo-on-xt.jpeg'
-import pantohaeD from '../assets/images/product-pantohae-d.jpeg'
+// Real Haemoon Pharma product renders (3D packshots, white background)
+import paahae650 from '../assets/images/rx-paahae-650.jpeg'
+import haemoTone from '../assets/images/rx-haemo-tone.jpeg'
+import haemoUti from '../assets/images/rx-haemo-uti.jpeg'
+import haevitMv from '../assets/images/rx-haevit-mv.jpeg'
+import livohae from '../assets/images/rx-livohae.jpeg'
+import dizzohae from '../assets/images/rx-dizzohae.jpeg'
+import haemoraft from '../assets/images/rx-haemoraft.jpeg'
+import haevit from '../assets/images/rx-haevit.jpeg'
 
 const u = (id, w = 1200, h = 900) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80&h=${h}`
@@ -46,24 +50,20 @@ export const images = {
 /**
  * Per-product imagery. Keyed to product ids from `products.js`.
  *
- * Some entries are real Haemoon Pharma product packshots (white-background box
- * photos). Those ids are listed in `packshotIds` so <ProductCard> can render
- * them on a clean white panel with `object-fit: contain` rather than cropping.
+ * All entries are real Haemoon Pharma 3D product renders on a white background,
+ * so every id is a "packshot" — <ProductCard> renders these contained on a
+ * clean panel with a subtle 3D tilt rather than cropping.
  */
 export const productImages = {
-  p1: u('1607619056574-7b8d3ee536b2', 800, 640),
-  p2: u('1550572017-edd951b55104', 800, 640),
-  p3: haemoOnXt, // Haemo On-XT — Ferrous Ascorbate, Folic Acid & Zinc
-  p4: u('1607301406259-dfb186e15de8', 800, 640),
-  p5: u('1490645935967-10de6ba17061', 800, 640),
-  p6: u('1556909211-36987daf7b4d', 800, 640),
-  p7: calhaeD3, // Calhae D3 — Calcium Carbonate & Vitamin D3
-  p8: u('1512069772995-ec65ed45afd6', 800, 640),
-  p9: u('1559757148-5c350d0d3c56', 800, 640),
-  p10: u('1584308666744-24d5c474f2ae', 800, 640),
-  p11: pantohaeD, // Pantohae D — Pantoprazole + Domperidone
-  p12: cefhaeO, // Cefhae-O — Cefixime & Ofloxacin
+  p1: paahae650, // Paahae 650 — Paracetamol Tablets IP
+  p2: haemoTone, // Haemo Tone — Iron, Folic Acid, B12 & Taurine Syrup
+  p3: haemoUti, // Haemo UTI — Cranberry, D-Mannose & Potassium Syrup
+  p4: haevitMv, // Haevit MV — Multivitamin + enzyme Syrup
+  p5: livohae, // Livohae — Liver support Tablets
+  p6: dizzohae, // Dizzohae — Multi-enzyme Tablets
+  p7: haemoraft, // Haemoraft — Antacid Oral Suspension
+  p8: haevit, // Haevit — Multivitamin Soft Gelatin Capsules
 }
 
-/** Product ids whose image is a real packshot (render "contained" on white). */
-export const packshotIds = new Set(['p3', 'p7', 'p11', 'p12'])
+/** Product ids whose image is a packshot (render "contained" on white). */
+export const packshotIds = new Set(['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'])

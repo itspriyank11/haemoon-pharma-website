@@ -1,24 +1,19 @@
 import { productImages } from './images'
 
 /**
- * Product catalogue (8 products).
+ * Product catalogue — 8 real Haemoon Pharma products (3D packshot renders).
  *
- * Ordered intentionally: the 4 real Haemoon Pharma packshots come FIRST (these
- * also feed the About-page "Popular right now" featured strip via slice(0, 4)),
- * followed by 4 demo products arranged category-wise.
- *
- * Each product references an image by key from `productImages` (see
- * `images.js`). `accent` drives the per-category color used on cards/badges.
+ * The first 4 also feed the About-page "Featured products" strip via
+ * slice(0, 4). Each product references an image by key from `productImages`
+ * (see `images.js`). `accent` drives the per-category color used on cards.
  */
 
 export const categories = [
   { id: 'all', name: 'All Products' },
-  { id: 'pediatric', name: 'Pediatric Nutrition', accent: '#13b6c9' },
   { id: 'womens', name: "Women's Health", accent: '#e0599b' },
+  { id: 'vitamins', name: 'Vitamins & Nutrition', accent: '#f5a623' },
   { id: 'nutraceuticals', name: 'Nutraceuticals', accent: '#7c5cff' },
-  { id: 'vitamins', name: 'Vitamins', accent: '#f5a623' },
-  { id: 'protein', name: 'Protein Supplements', accent: '#2eb872' },
-  { id: 'wellness', name: 'Wellness Products', accent: '#0b6e8f' },
+  { id: 'wellness', name: 'Wellness & Care', accent: '#0b6e8f' },
 ]
 
 /** Quick lookup: category id -> meta */
@@ -28,118 +23,119 @@ export const categoryMap = categories.reduce((acc, c) => {
 }, {})
 
 export const products = [
-  // ---- Real Haemoon Pharma products (also the featured strip on About) ----
   {
-    id: 'p3',
-    name: 'Haemo On-XT',
+    id: 'p2',
+    name: 'Haemo Tone',
     category: 'womens',
-    tagline: 'Iron, folic acid & zinc',
-    composition: 'Ferrous Ascorbate, Folic Acid & Zinc Sulphate Tablets',
+    tagline: 'Iron, B12 & Taurine syrup',
+    composition: 'Iron, Folic Acid, Vitamin B12 & Taurine Syrup',
     description:
-      'A haematinic tablet combining ferrous ascorbate, folic acid and zinc to support healthy haemoglobin, combat anaemia and restore energy.',
-    image: productImages.p3,
+      'A sugar-free haematinic syrup with iron, folic acid, vitamin B12 and taurine to support healthy haemoglobin, fight anaemia and restore energy.',
+    image: productImages.p2,
     badge: 'Bestseller',
   },
   {
-    id: 'p7',
-    name: 'Calhae D3',
+    id: 'p4',
+    name: 'Haevit MV',
     category: 'vitamins',
-    tagline: 'Calcium & Vitamin D3',
-    composition: 'Calcium Carbonate & Vitamin D3 Tablets IP',
+    tagline: 'Multivitamin + enzymes',
+    composition: 'Digestive Enzymes, Multivitamin & Multimineral Syrup',
     description:
-      'Calcium carbonate with vitamin D3 to support strong bones and teeth, improve calcium absorption and maintain bone density.',
-    image: productImages.p7,
+      'A sugar-free syrup blending digestive enzymes, multivitamins, multiminerals and antioxidants for daily nutrition, immunity and appetite.',
+    image: productImages.p4,
     badge: 'Popular',
   },
   {
-    id: 'p11',
-    name: 'Pantohae D',
-    category: 'wellness',
-    tagline: 'Acidity & gastro care',
-    composition: 'Pantoprazole Sodium (EC) & Domperidone (SR) Capsules',
+    id: 'p8',
+    name: 'Haevit',
+    category: 'vitamins',
+    tagline: 'Antioxidant capsules',
+    composition: 'Grape Seed, Lycopene, Lutein, Zinc & Multivitamin Capsules',
     description:
-      'Pantoprazole with domperidone for effective relief from acidity, heartburn, reflux and indigestion.',
-    image: productImages.p11,
+      'Soft gelatin capsules with grape seed extract, lycopene, lutein, folic acid, zinc and selenium — complete antioxidant and immunity support.',
+    image: productImages.p8,
     badge: 'New',
   },
   {
-    id: 'p12',
-    name: 'Cefhae-O',
-    category: 'wellness',
-    tagline: 'Broad-spectrum antibiotic',
-    composition: 'Cefixime & Ofloxacin Tablets',
-    description:
-      'A dual-action antibiotic combining cefixime and ofloxacin to treat a broad range of bacterial infections. Rx only.',
-    image: productImages.p12,
-  },
-
-  // ---- Supporting range, arranged category-wise ----
-  {
     id: 'p1',
-    name: 'NivoGrow Junior',
-    category: 'pediatric',
-    tagline: 'Complete growth nutrition',
+    name: 'Paahae 650',
+    category: 'wellness',
+    tagline: 'Pain & fever relief',
+    composition: 'Paracetamol Tablets I.P. 650 mg',
     description:
-      'A scientifically balanced nutritional drink supporting healthy growth, immunity and cognitive development in children aged 2–10.',
+      'Paracetamol 650 mg tablets for fast, effective relief from fever, headache and everyday body aches and pains.',
     image: productImages.p1,
-    badge: 'Bestseller',
+  },
+  {
+    id: 'p3',
+    name: 'Haemo UTI',
+    category: 'womens',
+    tagline: 'Urinary tract care',
+    composition: 'Cranberry Extract, D-Mannose & Potassium Magnesium Citrate',
+    description:
+      'A sugar-free cranberry and D-mannose syrup that supports urinary tract health and helps maintain a healthy bladder.',
+    image: productImages.p3,
   },
   {
     id: 'p5',
-    name: 'CurcuPure Active',
+    name: 'Livohae',
     category: 'nutraceuticals',
-    tagline: 'Advanced turmeric extract',
+    tagline: 'Advanced liver support',
+    composition: 'Silymarin, L-Ornithine, L-Glutathione, NAC & Co-Q10',
     description:
-      'High-bioavailability curcumin with piperine, delivering powerful antioxidant and joint-comfort support.',
+      'A comprehensive liver-support tablet with silymarin, glutathione, NAC, Co-Q10 and antioxidants to protect and detoxify the liver.',
     image: productImages.p5,
     badge: 'Bestseller',
   },
   {
-    id: 'p8',
-    name: 'VitaComplete Multi',
-    category: 'vitamins',
-    tagline: '23 essential nutrients',
+    id: 'p6',
+    name: 'Dizzohae',
+    category: 'nutraceuticals',
+    tagline: 'Multi-enzyme digestion',
+    composition: 'Multi-enzyme Tablets',
     description:
-      'A comprehensive daily multivitamin and mineral complex engineered to fill nutritional gaps and sustain energy.',
-    image: productImages.p8,
-    badge: 'Popular',
+      'A multi-enzyme tablet that aids digestion, eases bloating and helps the body break down and absorb nutrients efficiently.',
+    image: productImages.p6,
   },
   {
-    id: 'p9',
-    name: 'ProWhey Isolate',
-    category: 'protein',
-    tagline: '90% pure protein',
+    id: 'p7',
+    name: 'Haemoraft',
+    category: 'wellness',
+    tagline: 'Antacid suspension',
+    composition: 'Sodium Alginate, Sodium Bicarbonate & Calcium Carbonate',
     description:
-      'Fast-absorbing whey protein isolate with a full amino-acid profile to fuel recovery and lean muscle growth.',
-    image: productImages.p9,
-    badge: 'Bestseller',
+      'A mint-flavoured oral suspension giving fast, long-lasting relief from heartburn, acidity and indigestion — sugar free.',
+    image: productImages.p7,
   },
 ]
 
-/** Featured subset for the About-page “Product Categories Preview”. */
+/**
+ * Featured category previews for the About-page “Product Categories” section.
+ * Each pulls a representative product image from the catalogue automatically.
+ */
 export const featuredCategories = [
-  {
-    id: 'pediatric',
-    name: 'Pediatric Nutrition',
-    description:
-      'Gentle, science-backed nutrition that supports healthy growth and immunity from the very first years.',
-  },
   {
     id: 'womens',
     name: "Women's Health",
     description:
-      'Targeted formulations crafted to support women’s energy, bone strength and vitality at every stage.',
+      'Haematinics and urinary-care formulations crafted to support women’s energy, vitality and wellbeing at every stage.',
+  },
+  {
+    id: 'vitamins',
+    name: 'Vitamins & Nutrition',
+    description:
+      'Multivitamin syrups and antioxidant capsules that fill nutritional gaps and support everyday immunity and energy.',
   },
   {
     id: 'nutraceuticals',
     name: 'Nutraceuticals',
     description:
-      'High-bioavailability botanical and omega extracts for everyday wellbeing and active recovery.',
+      'Liver-support and multi-enzyme formulations for healthy digestion, detoxification and active recovery.',
   },
   {
-    id: 'protein',
-    name: 'Protein Supplements',
+    id: 'wellness',
+    name: 'Wellness & Care',
     description:
-      'Premium whey and plant proteins engineered for clean fuel, recovery and lean muscle support.',
+      'Everyday relief essentials — from pain and fever to acidity and indigestion — you can rely on.',
   },
 ]

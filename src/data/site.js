@@ -44,12 +44,12 @@ export const navLinks = [
 ]
 
 export const productLinks = [
-  { label: 'Pediatric Nutrition', to: '/products' },
   { label: "Women's Health", to: '/products' },
+  { label: 'Vitamins & Nutrition', to: '/products' },
   { label: 'Nutraceuticals', to: '/products' },
-  { label: 'Vitamins', to: '/products' },
-  { label: 'Protein Supplements', to: '/products' },
-  { label: 'Wellness Products', to: '/products' },
+  { label: 'Wellness & Care', to: '/products' },
+  { label: 'Haemo Tone Syrup', to: '/products' },
+  { label: 'Livohae Tablets', to: '/products' },
 ]
 
 export const socials = [

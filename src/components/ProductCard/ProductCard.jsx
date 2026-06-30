@@ -1,4 +1,11 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 
 import SmartImage from '../Common/SmartImage'
@@ -8,32 +15,76 @@ import styles from './ProductCard.module.css'
 
 /**
  * Reusable product card with image, category badge, name, tagline and
- * description. Lifts and reveals a CTA on hover. Used on both the Products
- * grid and the About-page preview.
+ * description.
  *
- * Real packshots (white-background box photos) render "contained" on a clean
- * panel; lifestyle/illustrative images render "covered".
+ * On pointer devices the whole card tilts in 3D toward the cursor and the
+ * product render lifts forward for a premium, tactile feel. Honors
+ * `prefers-reduced-motion` (falls back to a simple lift).
  */
 export default function ProductCard({ product }) {
   const cat = categoryMap[product.category] || {}
   const accent = cat.accent || 'var(--primary)'
   const isPackshot = packshotIds.has(product.id)
+  const reduceMotion = useReducedMotion()
+
+  const ref = useRef(null)
+
+  // Normalised pointer position within the card (-0.5 … 0.5)
+  const px = useMotionValue(0)
+  const py = useMotionValue(0)
+
+  // Smooth the values so the tilt eases rather than snaps
+  const sx = useSpring(px, { stiffness: 220, damping: 18 })
+  const sy = useSpring(py, { stiffness: 220, damping: 18 })
+
+  const rotateX = useTransform(sy, [-0.5, 0.5], ['7deg', '-7deg'])
+  const rotateY = useTransform(sx, [-0.5, 0.5], ['-9deg', '9deg'])
+
+  // Parallax: the product image drifts slightly opposite the tilt for depth
+  const imgX = useTransform(sx, [-0.5, 0.5], ['-12px', '12px'])
+  const imgY = useTransform(sy, [-0.5, 0.5], ['-12px', '12px'])
+
+  const handlePointerMove = (e) => {
+    if (reduceMotion) return
+    const rect = ref.current?.getBoundingClientRect()
+    if (!rect) return
+    px.set((e.clientX - rect.left) / rect.width - 0.5)
+    py.set((e.clientY - rect.top) / rect.height - 0.5)
+  }
+
+  const handlePointerLeave = () => {
+    px.set(0)
+    py.set(0)
+  }
 
   return (
     <motion.article
+      ref={ref}
       className={`${styles.card} ${isPackshot ? styles.packshot : ''}`}
-      style={{ '--accent': accent }}
-      whileHover={{ y: -8 }}
+      style={{
+        '--accent': accent,
+        rotateX: reduceMotion ? 0 : rotateX,
+        rotateY: reduceMotion ? 0 : rotateY,
+        transformPerspective: 1000,
+      }}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      whileHover={reduceMotion ? { y: -6 } : { y: -10 }}
       transition={{ type: 'spring', stiffness: 280, damping: 22 }}
     >
       <div className={styles.media}>
-        <SmartImage
-          src={product.image}
-          alt={product.name}
-          ratio="5 / 4"
-          fit={isPackshot ? 'contain' : 'cover'}
-          className={styles.image}
-        />
+        <motion.div
+          className={styles.tiltLayer}
+          style={reduceMotion ? undefined : { x: imgX, y: imgY }}
+        >
+          <SmartImage
+            src={product.image}
+            alt={product.name}
+            ratio="5 / 4"
+            fit={isPackshot ? 'contain' : 'cover'}
+            className={styles.image}
+          />
+        </motion.div>
         <span className={styles.category}>{cat.name}</span>
         {product.badge && <span className={styles.badge}>{product.badge}</span>}
       </div>

@@ -11,6 +11,8 @@
     box-shadow 0.4s var(--ease),
     border-color 0.4s var(--ease);
   height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .card:hover {
@@ -21,6 +23,14 @@
 .media {
   position: relative;
   overflow: hidden;
+}
+
+/* Parallax wrapper — drifts the product render for a 3D depth effect */
+.tiltLayer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
 }
 
 .image {
@@ -49,9 +59,10 @@
   transform: scale(1.05);
 }
 
-/* ---- Packshot variant: real product box photos on a clean white panel ---- */
+/* ---- Packshot variant: real 3D product renders on a clean white panel ---- */
 .packshot .media {
-  background: #fff;
+  background:
+    radial-gradient(120% 90% at 50% 25%, #ffffff 0%, #f4f8fb 75%, #eef4f8 100%);
   border-bottom: 1px solid var(--line);
 }
 
@@ -59,8 +70,29 @@
   display: none;
 }
 
+/* Soft contact shadow under the floating product render */
+.packshot .tiltLayer::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  width: 62%;
+  height: 14px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(12, 34, 51, 0.22), transparent 70%);
+  filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+
+.packshot:hover .tiltLayer::after {
+  opacity: 1;
+}
+
+/* Image already drifts via the tilt layer; keep a gentle hover zoom too */
 .packshot:hover :global(.smartimg) {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .category {
