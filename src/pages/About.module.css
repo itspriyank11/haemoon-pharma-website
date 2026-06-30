@@ -266,9 +266,14 @@
 @media (max-width: 920px) {
   .aboutGrid {
     grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 40px;
+  }
+  /* On mobile, show the text content first, then the image. */
+  .aboutCopy {
+    order: 1;
   }
   .aboutVisual {
+    order: 2;
     width: 100%;
     max-width: 440px;
     margin-inline: auto;
