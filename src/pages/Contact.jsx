@@ -1,15 +1,9 @@
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Clock,
-  MapPinned,
-  Navigation,
-  Building2,
-  FileBadge,
-  ReceiptText,
-  CalendarCheck,
-} from 'lucide-react'
+import { Navigation } from 'lucide-react'
+
+import addressIcon from '../assets/icons/loc-address.svg'
+import phoneIcon from '../assets/icons/loc-phone.svg'
+import emailIcon from '../assets/icons/loc-email.svg'
+import timingIcon from '../assets/icons/loc-timing.svg'
 
 import PageTransition from '../components/Common/PageTransition'
 import PageHero from '../components/Common/PageHero'
@@ -17,39 +11,35 @@ import Reveal from '../components/Common/Reveal'
 import { StaggerGroup, StaggerItem } from '../components/Common/StaggerGroup'
 import ContactForm from '../components/ContactForm/ContactForm'
 
-import { company, businessHours } from '../data/site'
+import { company } from '../data/site'
+import { images } from '../data/images'
 import styles from './Contact.module.css'
 
 const CONTACT_CARDS = [
   {
-    icon: MapPin,
-    title: 'Registered Office',
+    img: addressIcon,
+    title: 'Address',
     lines: [company.address.line1, company.address.line2],
   },
   {
-    icon: Building2,
-    title: 'Marketing Office',
-    lines: [company.marketingOffice.line1, company.marketingOffice.line2],
-  },
-  {
-    icon: Phone,
-    title: 'Call Us',
-    lines: [company.phone, 'Mon – Sat, 9am – 6:30pm'],
+    img: phoneIcon,
+    title: 'Phone Number',
+    lines: [company.phone],
     href: `tel:${company.phoneHref}`,
   },
   {
-    icon: Mail,
-    title: 'Email Us',
-    lines: [company.email, 'We reply within 1 business day'],
+    img: timingIcon,
+    title: 'Timing',
+    lines: [company.timing],
+  },
+  {
+    img: emailIcon,
+    title: 'Email ID',
+    lines: [company.email],
     href: `mailto:${company.email}`,
   },
 ]
 
-const COMPANY_FACTS = [
-  { icon: FileBadge, label: 'CIN', value: company.cin },
-  { icon: ReceiptText, label: 'GST No.', value: company.gst },
-  { icon: CalendarCheck, label: 'Registered', value: company.registeredOn },
-]
 
 export default function Contact() {
   return (
@@ -58,147 +48,94 @@ export default function Contact() {
         eyebrow="Get in Touch"
         title="We’d love to"
         highlight="hear from you"
-        crumb="Contact Us"
-        subtitle="Questions about our products, partnerships or manufacturing? Reach out — our team is here to help."
+        subtitle="We are always working to deliver the best for you. Reach out about our products, partnerships or manufacturing."
       />
 
-      {/* ---- Contact info cards ---- */}
-      <section className="section section--tight">
+      {/* ---- Connect: angled globe panel + form ---- */}
+      <section className="section section--tight" id="connect">
         <div className="container container--wide">
-          <StaggerGroup className={styles.cards}>
-            {CONTACT_CARDS.map((c) => {
-              const Inner = (
-                <>
-                  <span className={styles.cardIcon}>
-                    <c.icon size={24} />
-                  </span>
-                  <h3>{c.title}</h3>
-                  {c.lines.map((line, i) => (
-                    <p key={i} className={i === 0 ? styles.cardPrimary : ''}>
-                      {line}
-                    </p>
-                  ))}
-                </>
-              )
-              return (
-                <StaggerItem key={c.title}>
-                  {c.href ? (
-                    <a href={c.href} className={styles.card}>
-                      {Inner}
-                    </a>
-                  ) : (
-                    <div className={styles.card}>{Inner}</div>
-                  )}
-                </StaggerItem>
-              )
-            })}
-          </StaggerGroup>
-
-          {/* Statutory company facts */}
-          <Reveal direction="up" className={styles.facts}>
-            {COMPANY_FACTS.map((f) => (
-              <div key={f.label} className={styles.fact}>
-                <span className={styles.factIcon}>
-                  <f.icon size={18} />
-                </span>
-                <div>
-                  <small>{f.label}</small>
-                  <strong>{f.value}</strong>
-                </div>
-              </div>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---- Form + hours ---- */}
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container container--wide">
-          <div className={styles.layout}>
-            <Reveal direction="right" className={styles.formCol}>
-              <ContactForm />
+          <div className={styles.connect}>
+            {/* Left: image panel */}
+            <Reveal direction="right" className={styles.globePanel}>
+              <img
+                src={images.connect}
+                alt="A Haemoon Pharma customer-care representative ready to help"
+                className={styles.connectImg}
+                loading="lazy"
+              />
             </Reveal>
 
-            <div className={styles.sideCol}>
-              {/* Business hours */}
-              <Reveal direction="left" className={styles.hoursCard}>
-                <div className={styles.hoursHead}>
-                  <span className={styles.hoursIcon}>
-                    <Clock size={22} />
-                  </span>
-                  <div>
-                    <h3>Business Hours</h3>
-                    <p>Our team is available during these times.</p>
-                  </div>
-                </div>
-                <ul className={styles.hoursList}>
-                  {businessHours.map((h) => {
-                    const closed = h.time.toLowerCase() === 'closed'
-                    return (
-                      <li key={h.day}>
-                        <span>{h.day}</span>
-                        <span
-                          className={`${styles.hoursTime} ${
-                            closed ? styles.closed : ''
-                          }`}
-                        >
-                          {h.time}
-                        </span>
-                      </li>
-                    )
-                  })}
-                </ul>
-                <div className={styles.openNow}>
-                  <span className={styles.dot} />
-                  Typically replies within a few hours
-                </div>
-              </Reveal>
-
-              {/* Quick contact reminder */}
-              <Reveal direction="left" delay={0.1} className={styles.miniCta}>
-                <h4>Prefer to call?</h4>
-                <p>Speak directly with our customer care team.</p>
-                <a href={`tel:${company.phoneHref}`} className="btn btn--block">
-                  <Phone size={17} />
-                  {company.phone}
-                </a>
-              </Reveal>
-            </div>
+            {/* Right: form */}
+            <Reveal direction="left" className={styles.formCol}>
+              <ContactForm withHeader />
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ---- Map placeholder ---- */}
-      <section className="section section--tight" style={{ paddingTop: 0 }}>
+      {/* ---- Where you can find us ---- */}
+      <section className="section section--soft" id="find-us">
         <div className="container container--wide">
-          <Reveal direction="up">
-            <div className={styles.map}>
-              <div className={styles.mapInner}>
-                <span className={styles.mapPin}>
-                  <MapPinned size={34} />
-                </span>
-                <h3>Find us on the map</h3>
-                <p>
-                  {company.address.line1}, {company.address.line2}
-                </p>
-                <a
-                  href="https://maps.google.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="btn btn--light btn--sm"
-                >
-                  <Navigation size={16} />
-                  Open in Google Maps
-                </a>
-                <span className={styles.mapNote}>
-                  Interactive map embed reserved for this space
-                </span>
-              </div>
+          <div className={styles.findLayout}>
+            {/* Left: heading + contact details */}
+            <div className={styles.findCol}>
+              <Reveal direction="up">
+                <h2 className={styles.findTitle}>
+                  Where you can <span className="gradient-text">find us</span>
+                </h2>
+              </Reveal>
 
-              {/* Decorative faux-map grid */}
-              <div className={styles.mapGrid} aria-hidden="true" />
+              <StaggerGroup className={styles.findList}>
+                {CONTACT_CARDS.map((c) => {
+                const Inner = (
+                  <>
+                    <span className={styles.findIcon}>
+                      <img src={c.img} alt="" />
+                    </span>
+                    <div>
+                      <h3>{c.title}</h3>
+                      {c.lines.map((line, i) => (
+                        <p key={i}>{line}</p>
+                      ))}
+                    </div>
+                  </>
+                )
+                return (
+                  <StaggerItem key={c.title}>
+                    {c.href ? (
+                      <a href={c.href} className={styles.findItem}>
+                        {Inner}
+                      </a>
+                    ) : (
+                      <div className={styles.findItem}>{Inner}</div>
+                    )}
+                  </StaggerItem>
+                )
+              })}
+              </StaggerGroup>
             </div>
-          </Reveal>
+
+            {/* Right: Google Map */}
+            <Reveal direction="left" className={styles.mapWrap}>
+              <iframe
+                title="Haemoon Pharma location map"
+                src={company.mapEmbed}
+                className={styles.mapFrame}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <a
+                href={company.mapLink}
+                target="_blank"
+                rel="noreferrer noopener"
+                className={`btn btn--light btn--sm ${styles.mapBtn}`}
+              >
+                <Navigation size={16} />
+                Open in Google Maps
+              </a>
+            </Reveal>
+          </div>
         </div>
       </section>
     </PageTransition>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ShieldCheck,
@@ -22,9 +23,10 @@ import SmartImage from '../components/Common/SmartImage'
 import Hero from '../components/Hero/Hero'
 import CTA from '../components/CTA/CTA'
 import ProductCard from '../components/ProductCard/ProductCard'
+import ProductModal from '../components/ProductCard/ProductModal'
 
 import { images } from '../data/images'
-import { products, featuredCategories, categoryMap } from '../data/products'
+import { products } from '../data/products'
 import styles from './About.module.css'
 
 const FEATURES = [
@@ -88,6 +90,7 @@ const ABOUT_POINTS = [
 export default function About() {
   // The 4 real Haemoon products (first in the catalogue) feed the strip
   const previewProducts = products.slice(0, 4)
+  const [selected, setSelected] = useState(null)
 
   return (
     <PageTransition>
@@ -192,15 +195,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* ---- PRODUCT CATEGORIES PREVIEW ---- */}
-      <section className="section" id="categories">
+      {/* ---- FEATURED PRODUCTS ---- */}
+      <section className="section" id="featured-products">
         <div className="container container--wide">
           <div className={styles.previewHead}>
             <SectionHeading
               eyebrow="Our Range"
-              title="Featured product"
-              highlight="categories"
-              subtitle="A growing portfolio crafted across the moments that matter most for health and wellbeing."
+              title="Featured"
+              highlight="products"
+              subtitle="Our flagship formulations, trusted by clinicians and families across the moments that matter most for health and wellbeing."
             />
             <Reveal direction="left" className={styles.previewHeadCta}>
               <Link to="/products" className="btn btn--ghost">
@@ -210,47 +213,10 @@ export default function About() {
             </Reveal>
           </div>
 
-          <StaggerGroup className={styles.categoryGrid}>
-            {featuredCategories.map((c) => {
-              const accent = categoryMap[c.id]?.accent || 'var(--primary)'
-              const img = products.find((p) => p.category === c.id)?.image
-              return (
-                <StaggerItem key={c.id}>
-                  <Link
-                    to="/products"
-                    className={styles.categoryCard}
-                    style={{ '--accent': accent }}
-                  >
-                    <SmartImage
-                      src={img}
-                      alt={c.name}
-                      ratio="4 / 3"
-                      className={styles.categoryImg}
-                    />
-                    <div className={styles.categoryBody}>
-                      <h3>{c.name}</h3>
-                      <p>{c.description}</p>
-                      <span className={styles.categoryLink}>
-                        Explore range
-                        <ArrowRight size={16} />
-                      </span>
-                    </div>
-                  </Link>
-                </StaggerItem>
-              )
-            })}
-          </StaggerGroup>
-
-          {/* Featured products strip */}
-          <Reveal direction="up" className={styles.featuredProductsHead}>
-            <h3>Featured products</h3>
-            <p>Our flagship formulations, trusted by clinicians and families.</p>
-          </Reveal>
-
           <StaggerGroup className={styles.productStrip}>
             {previewProducts.map((p) => (
               <StaggerItem key={p.id}>
-                <ProductCard product={p} />
+                <ProductCard product={p} onSelect={setSelected} />
               </StaggerItem>
             ))}
           </StaggerGroup>
@@ -259,6 +225,8 @@ export default function About() {
 
       {/* ---- CTA ---- */}
       <CTA />
+
+      <ProductModal product={selected} onClose={() => setSelected(null)} />
     </PageTransition>
   )
 }

@@ -20,15 +20,29 @@ import dizzohae from '../assets/images/rx-dizzohae.jpeg'
 import haemoraft from '../assets/images/rx-haemoraft.jpeg'
 import haevit from '../assets/images/rx-haevit.jpeg'
 
+// Contact "Connect with us" panel image
+import connectImg from '../assets/images/connect.jpg'
+// CTA banner image (colourful medicines)
+import ctaPills from '../assets/images/cta-pills.jpg'
+// About company image (pharmacy / medicines)
+import aboutImg from '../assets/images/about-pharmacy.jpg'
+// Hero image (vertical pharmacy / medicines)
+import heroImg from '../assets/images/hero-pharmacy.jpg'
+// Products page hero image
+import productsHeroImg from '../assets/images/products-hero.jpg'
+
 const u = (id, w = 1200, h = 900) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80&h=${h}`
 
 export const images = {
-  // Hero — modern laboratory / research
-  hero: u('1581093588401-fbb62a02f120', 1400, 1100),
+  // Hero — pharmacy / medicines (vertical)
+  hero: heroImg,
 
-  // About company — scientists collaborating
-  about: u('1576091160550-2173dba999ef', 1200, 1000),
+  // Products page hero
+  productsHero: productsHeroImg,
+
+  // About company — pharmacy / medicines
+  about: aboutImg,
 
   // CTA banner backdrop — clean medical facility
   ctaBg: u('1532187863486-abf9dbad1b69', 1600, 900),
@@ -42,6 +56,15 @@ export const images = {
   catWomens: u('1505751172876-fa1923c5c528', 900, 700),
   catNutra: u('1607619056574-7b8d3ee536b2', 900, 700),
   catVitamins: u('1550572017-edd951b55104', 900, 700),
+
+  // Contact — realistic globe (global reach)
+  globe: u('1451187580459-43490279c0fa', 1000, 1000),
+
+  // Contact "Connect with us" panel
+  connect: connectImg,
+
+  // CTA banner side image
+  ctaPills,
 
   // Contact map placeholder backdrop
   mapBg: u('1524661135-423995f22d0b', 1400, 800),

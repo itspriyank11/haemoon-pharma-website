@@ -20,12 +20,24 @@ import styles from './ProductCard.module.css'
  * On pointer devices the whole card tilts in 3D toward the cursor and the
  * product render lifts forward for a premium, tactile feel. Honors
  * `prefers-reduced-motion` (falls back to a simple lift).
+ *
+ * Clicking the card (or pressing Enter/Space) calls `onSelect(product)` so the
+ * parent can open a detail modal.
  */
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onSelect }) {
   const cat = categoryMap[product.category] || {}
   const accent = cat.accent || 'var(--primary)'
   const isPackshot = packshotIds.has(product.id)
   const reduceMotion = useReducedMotion()
+
+  const handleSelect = () => onSelect?.(product)
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handleSelect()
+    }
+  }
 
   const ref = useRef(null)
 
@@ -67,6 +79,11 @@ export default function ProductCard({ product }) {
         rotateY: reduceMotion ? 0 : rotateY,
         transformPerspective: 1000,
       }}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${product.name}`}
+      onClick={handleSelect}
+      onKeyDown={handleKeyDown}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       whileHover={reduceMotion ? { y: -6 } : { y: -10 }}

@@ -168,10 +168,127 @@
   color: var(--text-strong);
 }
 
+/* ---- Therapeutic divisions (coming soon) ---- */
+.divisions {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.division {
+  position: relative;
+  padding: 28px 24px 26px;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--ease),
+    box-shadow 0.4s var(--ease),
+    border-color 0.4s var(--ease);
+}
+
+.division::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 180, 199, 0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+
+.division:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(15, 180, 199, 0.4);
+}
+
+.division:hover::before {
+  opacity: 1;
+}
+
+.divisionBadge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--teal-600);
+  background: rgba(15, 180, 199, 0.1);
+  border: 1px solid rgba(15, 180, 199, 0.22);
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+}
+
+.divisionIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 15px;
+  margin-bottom: 18px;
+  color: #fff;
+  background: var(--grad-brand);
+  box-shadow: var(--shadow-brand);
+  transition: transform 0.4s var(--ease);
+}
+
+.division:hover .divisionIcon {
+  transform: scale(1.08) rotate(-5deg);
+}
+
+.division h3 {
+  position: relative;
+  font-size: 1.12rem;
+  margin-bottom: 7px;
+}
+
+.division p {
+  position: relative;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.divisionsCta {
+  margin-top: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.divisionsCta p {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text-strong);
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 1080px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .divisions {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .divisions {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

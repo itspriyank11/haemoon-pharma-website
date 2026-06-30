@@ -15,7 +15,7 @@ export function StaggerGroup({
   stagger = 0.1,
   delayChildren = 0.05,
   amount = 0.2,
-  once = true,
+  once = false,
   ...rest
 }) {
   return (

@@ -13,6 +13,13 @@
   height: 100%;
   transform-style: preserve-3d;
   will-change: transform;
+  cursor: pointer;
+  text-align: left;
+}
+
+.card:focus-visible {
+  outline: 3px solid rgba(15, 180, 199, 0.55);
+  outline-offset: 3px;
 }
 
 .card:hover {

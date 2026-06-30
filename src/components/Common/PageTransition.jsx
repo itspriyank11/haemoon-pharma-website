@@ -1,16 +1,17 @@
 import { motion } from 'framer-motion'
 
 /**
- * Wraps each page so route changes fade/slide gracefully via <AnimatePresence>
- * in App.jsx. Keeps transitions subtle and professional.
+ * Wraps each page so route changes cross-fade gracefully via <AnimatePresence>
+ * in App.jsx. A pure opacity fade (no vertical movement) keeps the transition
+ * subtle while letting each page open instantly at the top.
  */
 export default function PageTransition({ children }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -12 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       {children}
     </motion.div>

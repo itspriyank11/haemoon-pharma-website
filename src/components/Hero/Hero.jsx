@@ -45,7 +45,8 @@ export default function Hero() {
           className={styles.copy}
           variants={container}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
         >
           <motion.span className="eyebrow" variants={item}>
             <Star size={14} strokeWidth={2.4} />
@@ -53,14 +54,14 @@ export default function Hero() {
           </motion.span>
 
           <motion.h1 className={styles.title} variants={item}>
-            Pioneering <span className="gradient-text">healthcare</span> for a
-            healthier tomorrow
+            Where science meets{' '}
+            <span className="gradient-text">quality medicine</span> manufacturing
           </motion.h1>
 
           <motion.p className={styles.sub} variants={item}>
-            {company.name} develops research-driven pharmaceutical and
-            nutraceutical products — crafted to global quality standards and
-            trusted by families, clinicians and partners worldwide.
+            {company.name} manufactures research-driven pharmaceutical and
+            nutraceutical products under WHO-GMP standards — formulated,
+            tested and trusted by families, clinicians and partners worldwide.
           </motion.p>
 
           <motion.div className={styles.actions} variants={item}>
@@ -87,13 +88,14 @@ export default function Hero() {
         <motion.div
           className={styles.visual}
           initial={{ opacity: 0, scale: 0.94, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
         >
           <div className={styles.imageWrap}>
             <SmartImage
               src={images.hero}
-              alt="Scientist working in a modern pharmaceutical laboratory"
+              alt="Quality pharmaceutical medicines and supplements"
               ratio="4 / 5"
               loading="eager"
               className={styles.heroImage}
@@ -104,7 +106,8 @@ export default function Hero() {
           <motion.div
             className={`glass ${styles.floatCard}`}
             initial={{ opacity: 0, x: 30, y: 20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             <span className={styles.floatIcon}>
@@ -120,7 +123,8 @@ export default function Hero() {
           <motion.div
             className={`glass ${styles.floatCard} ${styles.floatCardTop}`}
             initial={{ opacity: 0, x: -30, y: -20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
             <span className={`${styles.floatIcon} ${styles.floatIconTeal}`}>

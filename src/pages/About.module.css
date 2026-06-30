@@ -12,6 +12,7 @@
 
 .aboutImageStack {
   position: relative;
+  width: 100%;
   max-width: 440px;
 }
 
@@ -247,88 +248,9 @@
   padding-bottom: 4px;
 }
 
-.categoryGrid {
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-}
-
-.categoryCard {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
-  transition:
-    transform 0.4s var(--ease),
-    box-shadow 0.4s var(--ease);
-}
-
-.categoryCard:hover {
-  transform: translateY(-7px);
-  box-shadow: var(--shadow-lg);
-}
-
-.categoryImg {
-  border-radius: 0;
-}
-
-.categoryBody {
-  padding: 22px 22px 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  border-top: 3px solid var(--accent);
-}
-
-.categoryBody h3 {
-  font-size: 1.16rem;
-  margin-bottom: 9px;
-}
-
-.categoryBody p {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  flex: 1;
-  margin-bottom: 16px;
-}
-
-.categoryLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--accent);
-  transition: gap 0.3s var(--ease);
-}
-
-.categoryCard:hover .categoryLink {
-  gap: 11px;
-}
-
 /* ============ FEATURED PRODUCTS STRIP ============ */
-.featuredProductsHead {
-  margin-top: 74px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.featuredProductsHead h3 {
-  font-size: 1.6rem;
-}
-
-.featuredProductsHead p {
-  margin-top: 6px;
-  color: var(--text-muted);
-}
-
 .productStrip {
+  margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
@@ -336,7 +258,6 @@
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1080px) {
-  .categoryGrid,
   .productStrip {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -348,8 +269,12 @@
     gap: 60px;
   }
   .aboutVisual {
+    width: 100%;
     max-width: 440px;
     margin-inline: auto;
+  }
+  .aboutImageStack {
+    max-width: none;
   }
   .pillars,
   .featureGrid {
@@ -361,7 +286,6 @@
   .points {
     grid-template-columns: 1fr;
   }
-  .categoryGrid,
   .productStrip {
     grid-template-columns: 1fr;
   }

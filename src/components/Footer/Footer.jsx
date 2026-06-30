@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail, ArrowUp, Send } from 'lucide-react'
+import { MapPin, Phone, Mail, ArrowUp, BadgeCheck, Factory } from 'lucide-react'
 
 import Logo from '../Common/Logo'
 import {
@@ -10,6 +10,7 @@ import {
 } from '../Common/BrandIcons'
 import {
   company,
+  manufacturer,
   navLinks,
   productLinks,
   socials,
@@ -33,35 +34,6 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      {/* Newsletter strip */}
-      <div className="container container--wide">
-        <div className={styles.newsletter}>
-          <div>
-            <h3 className={styles.nlTitle}>Stay informed with Haemoon</h3>
-            <p className={styles.nlText}>
-              Get product updates, research highlights and wellness insights —
-              straight to your inbox.
-            </p>
-          </div>
-          <form
-            className={styles.nlForm}
-            onSubmit={(e) => e.preventDefault()}
-            aria-label="Newsletter sign-up"
-          >
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              aria-label="Email address"
-              required
-            />
-            <button type="submit" className="btn">
-              Subscribe
-              <Send size={16} />
-            </button>
-          </form>
-        </div>
-      </div>
-
       {/* Main footer */}
       <div className={`container container--wide ${styles.main}`}>
         <div className={styles.brandCol}>
@@ -132,6 +104,35 @@ export default function Footer() {
               <a href={`mailto:${company.email}`}>{company.email}</a>
             </li>
           </ul>
+        </div>
+      </div>
+
+      {/* Marketed by / Manufactured by — boxed strip */}
+      <div className="container container--wide">
+        <div className={styles.mfgBox}>
+          <div className={styles.mfgCol}>
+            <span className={styles.mfgLabel}>
+              <BadgeCheck size={14} />
+              Marketed By
+            </span>
+            <strong>{company.legalName}</strong>
+            <small>
+              {company.address.line1}, {company.address.line2}
+            </small>
+          </div>
+
+          <span className={styles.mfgSep} aria-hidden="true" />
+
+          <div className={styles.mfgCol}>
+            <span className={styles.mfgLabel}>
+              <Factory size={14} />
+              Manufactured By
+            </span>
+            <strong>{manufacturer.name}</strong>
+            <small>
+              {manufacturer.office.line1}, {manufacturer.office.line2}
+            </small>
+          </div>
         </div>
       </div>
 

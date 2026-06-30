@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { User, Mail, Phone, Tag, MessageSquare, Send, CheckCircle2 } from 'lucide-react'
+import { Send, CheckCircle2 } from 'lucide-react'
 
 import styles from './ContactForm.module.css'
 
-const INITIAL = { name: '', email: '', phone: '', subject: '', message: '' }
+const INITIAL = { name: '', email: '', phone: '', message: '' }
 
 const validators = {
   name: (v) => (v.trim().length < 2 ? 'Please enter your name.' : ''),
@@ -16,16 +16,23 @@ const validators = {
     v.trim() && !/^[+\d][\d\s()-]{6,}$/.test(v.trim())
       ? 'Please enter a valid phone number.'
       : '',
-  subject: (v) => (v.trim().length < 3 ? 'Please add a subject.' : ''),
-  message: (v) =>
-    v.trim().length < 10 ? 'Your message should be a little longer.' : '',
+  message: () => '',
 }
 
+const FIELDS = [
+  { name: 'name', label: 'Name', type: 'text', required: true },
+  { name: 'email', label: 'Email ID', type: 'email', required: true },
+  { name: 'phone', label: 'Phone Number', type: 'tel', required: false },
+]
+
 /**
- * Accessible, client-validated contact form. On a valid submit it shows a
- * success state (no backend wired — ready to connect to an API/email service).
+ * Accessible, client-validated contact form styled as a "Connect with us"
+ * panel. Name and email are mandatory; on a valid submit it shows a success
+ * state (no backend wired — ready to connect to an API/email service).
+ *
+ * @param {boolean} withHeader  show the "Connect with us" heading
  */
-export default function ContactForm() {
+export default function ContactForm({ withHeader = false }) {
   const [values, setValues] = useState(INITIAL)
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
@@ -68,13 +75,6 @@ export default function ContactForm() {
     }
   }
 
-  const fields = [
-    { name: 'name', label: 'Full Name', type: 'text', icon: User, placeholder: 'Jane Doe', half: true },
-    { name: 'email', label: 'Email Address', type: 'email', icon: Mail, placeholder: 'jane@email.com', half: true },
-    { name: 'phone', label: 'Phone (optional)', type: 'tel', icon: Phone, placeholder: '+91 90000 00000', half: true },
-    { name: 'subject', label: 'Subject', type: 'text', icon: Tag, placeholder: 'How can we help?', half: true },
-  ]
-
   return (
     <div className={styles.card}>
       <AnimatePresence mode="wait">
@@ -112,29 +112,34 @@ export default function ContactForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <h3 className={styles.formTitle}>Send us a message</h3>
-            <p className={styles.formSub}>
-              Fill in the form below and we’ll respond as soon as possible.
-            </p>
+            {withHeader && (
+              <div className={styles.header}>
+                <h3 className={styles.formTitle}>Connect with us</h3>
+                <p className={styles.formSub}>
+                  Fill out this form and we’ll get back to you right away.
+                </p>
+              </div>
+            )}
 
-            <div className={styles.row}>
-              {fields.map((f) => (
+            <div className={styles.fields}>
+              {FIELDS.map((f) => (
                 <div
                   key={f.name}
                   className={`${styles.field} ${f.half ? styles.half : ''}`}
                 >
-                  <label htmlFor={f.name}>{f.label}</label>
                   <div
                     className={`${styles.inputWrap} ${
                       errors[f.name] ? styles.invalid : ''
                     }`}
                   >
-                    <f.icon size={18} className={styles.fieldIcon} />
+                    <label htmlFor={f.name}>
+                      {f.label}
+                      {f.required && <span className={styles.req}>*</span>}
+                    </label>
                     <input
                       id={f.name}
                       name={f.name}
                       type={f.type}
-                      placeholder={f.placeholder}
                       value={values[f.name]}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -151,35 +156,30 @@ export default function ContactForm() {
               ))}
 
               <div className={styles.field}>
-                <label htmlFor="message">Message</label>
                 <div
                   className={`${styles.inputWrap} ${styles.textareaWrap} ${
                     errors.message ? styles.invalid : ''
                   }`}
                 >
-                  <MessageSquare size={18} className={styles.fieldIcon} />
+                  <label htmlFor="message">Your Message</label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
-                    placeholder="Tell us a little about your enquiry…"
                     value={values.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    aria-invalid={!!errors.message}
-                    aria-describedby={errors.message ? 'message-err' : undefined}
                   />
                 </div>
-                {errors.message && (
-                  <span id="message-err" className={styles.error}>
-                    {errors.message}
-                  </span>
-                )}
               </div>
             </div>
 
+            <p className={styles.mandatory}>
+              <span className={styles.req}>*</span> Mandatory fields to be filled
+            </p>
+
             <button type="submit" className={`btn ${styles.submit}`}>
-              Send Message
+              Submit Now
               <Send size={17} />
             </button>
           </motion.form>

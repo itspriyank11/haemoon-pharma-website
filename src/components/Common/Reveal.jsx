@@ -3,9 +3,11 @@ import { motion } from 'framer-motion'
 /**
  * Scroll-triggered reveal wrapper.
  *
- * Fades + translates its children into place the first time it enters the
- * viewport. Direction and delay are configurable so it can express slide-up,
- * slide-left, slide-right, fade and scale entrances from one component.
+ * Fades + translates its children into place each time it enters the viewport
+ * (so animations replay when scrolling back up too). Pass `once` to make it
+ * fire only the first time. Direction and delay are configurable so it can
+ * express slide-up, slide-left, slide-right, fade and scale entrances from one
+ * component.
  *
  * @param {'up'|'down'|'left'|'right'|'fade'|'scale'} direction
  * @param {number} delay   seconds before the animation starts
@@ -35,7 +37,7 @@ export default function Reveal({
   delay = 0,
   distance = 36,
   duration = 0.7,
-  once = true,
+  once = false,
   amount = 0.25,
   className,
   as = 'div',

@@ -11,12 +11,20 @@ export const company = {
   email: 'care@haemoonpharma.com',
   phone: '+91 98765 43210', // TODO: replace with official phone number
   phoneHref: '+919876543210',
+  timing: '9:30 AM – 6:30 PM',
 
   // Registered office (primary)
   address: {
     line1: 'Ward No. 3, Kucheibudhi, P.O. Rairangpur',
     line2: 'Dist. Mayurbhanj, Odisha 757043, India',
   },
+
+  // Google Maps embed for the registered office (Rairangpur, Odisha).
+  // Uses the full address so Google places the pin as precisely as it can.
+  mapEmbed:
+    'https://www.google.com/maps?q=Kucheibudhi,+Rairangpur,+Mayurbhanj,+Odisha+757043&output=embed',
+  mapLink:
+    'https://www.google.com/maps?q=Ward+No.+3,+Kucheibudhi,+Rairangpur,+Mayurbhanj,+Odisha+757043',
 
   // Marketing office
   marketingOffice: {
@@ -28,6 +36,24 @@ export const company = {
   cin: 'U46497OD2024PTC046029',
   gst: '21AAHCH3857Q1Z4',
   registeredOn: '17 March 2025',
+}
+
+/**
+ * Contract manufacturer of Haemoon Pharma's products. Haemoon is the brand
+ * owner / marketer ("Client"); products are manufactured by Walter Healthcare.
+ * Shown on the Contact page and footer for regulatory transparency.
+ */
+export const manufacturer = {
+  name: 'Walter Healthcare Private Limited',
+  shortName: 'Walter Healthcare',
+  office: {
+    line1: 'Plot No. 174, Industrial Area Phase IX',
+    line2: 'Mohali, Punjab 160062, India',
+  },
+  site: {
+    line1: 'B-29, Industrial Focal Point, Chanalon',
+    line2: 'Kurali, Mohali, Punjab 140103, India',
+  },
 }
 
 export const businessHours = [

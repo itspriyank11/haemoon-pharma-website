@@ -1,19 +1,51 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, SlidersHorizontal, PackageSearch, ArrowRight } from 'lucide-react'
+import {
+  Search,
+  SlidersHorizontal,
+  PackageSearch,
+  ArrowRight,
+  HeartPulse,
+  Droplets,
+  Pill,
+  Brain,
+  Activity,
+  Atom,
+  Baby,
+  Syringe,
+  Sparkles,
+} from 'lucide-react'
 
 import PageTransition from '../components/Common/PageTransition'
 import PageHero from '../components/Common/PageHero'
+import SectionHeading from '../components/Common/SectionHeading'
+import Reveal from '../components/Common/Reveal'
+import { StaggerGroup, StaggerItem } from '../components/Common/StaggerGroup'
 import ProductCard from '../components/ProductCard/ProductCard'
+import ProductModal from '../components/ProductCard/ProductModal'
 import CTA from '../components/CTA/CTA'
 
-import { products, categories } from '../data/products'
+import { products, categories, therapeuticDivisions } from '../data/products'
+import { images } from '../data/images'
 import styles from './Products.module.css'
+
+// Map data icon keys to lucide components
+const divisionIcons = {
+  heartPulse: HeartPulse,
+  droplets: Droplets,
+  pill: Pill,
+  brain: Brain,
+  activity: Activity,
+  atom: Atom,
+  baby: Baby,
+  syringe: Syringe,
+}
 
 export default function Products() {
   const [query, setQuery] = useState('')
   const [active, setActive] = useState('all')
+  const [selected, setSelected] = useState(null)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -34,8 +66,20 @@ export default function Products() {
         eyebrow="Our Portfolio"
         title="Products engineered for"
         highlight="better health"
-        crumb="Products"
         subtitle="Explore our growing range of pharmaceutical and nutraceutical products — crafted to global quality standards and trusted worldwide."
+        description="From iron-rich tonics and multivitamins to liver care, digestive health and women's wellness, every Haemoon formulation is developed with research-backed ingredients and manufactured at WHO-GMP certified facilities. Quality you can feel, in every dose."
+        points={[
+          'WHO-GMP certified manufacturing',
+          'Research-backed formulations',
+          'Strict quality assurance',
+          'Trusted across India',
+        ]}
+        image={images.productsHero}
+        imageAlt="Haemoon Pharma medicines, capsules and natural extracts"
+        stats={[
+          { value: '8+', label: 'Products' },
+          { value: '4', label: 'Categories' },
+        ]}
       />
 
       {/* ---- Toolbar ---- */}
@@ -89,16 +133,21 @@ export default function Products() {
           {filtered.length > 0 ? (
             <motion.div layout className={styles.grid}>
               <AnimatePresence mode="popLayout">
-                {filtered.map((p) => (
+                {filtered.map((p, i) => (
                   <motion.div
                     key={p.id}
                     layout
-                    initial={{ opacity: 0, scale: 0.92, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    initial={{ opacity: 0, scale: 0.92, y: 28 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.2 }}
                     exit={{ opacity: 0, scale: 0.92 }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{
+                      duration: 0.5,
+                      delay: (i % 4) * 0.08,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                   >
-                    <ProductCard product={p} />
+                    <ProductCard product={p} onSelect={setSelected} />
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -139,7 +188,49 @@ export default function Products() {
         </div>
       </section>
 
+      {/* ---- Therapeutic Divisions (roadmap / coming soon) ---- */}
+      <section className="section section--soft" id="divisions">
+        <div className="container container--wide">
+          <SectionHeading
+            center
+            eyebrow="Expanding Soon"
+            title="Our upcoming"
+            highlight="therapeutic divisions"
+            subtitle="We’re growing fast. These specialised divisions are on our roadmap — bringing quality, research-backed care to many more segments."
+          />
+
+          <StaggerGroup className={styles.divisions}>
+            {therapeuticDivisions.map((d) => {
+              const Icon = divisionIcons[d.icon] || Pill
+              return (
+                <StaggerItem key={d.name} className={styles.division}>
+                  <span className={styles.divisionBadge}>
+                    <Sparkles size={12} />
+                    Coming soon
+                  </span>
+                  <span className={styles.divisionIcon}>
+                    <Icon size={26} />
+                  </span>
+                  <h3>{d.name}</h3>
+                  <p>{d.desc}</p>
+                </StaggerItem>
+              )
+            })}
+          </StaggerGroup>
+
+          <Reveal direction="up" className={styles.divisionsCta}>
+            <p>Interested in partnering or distributing these ranges?</p>
+            <Link to="/contact" className="btn">
+              Talk to our team
+              <ArrowRight size={18} />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       <CTA />
+
+      <ProductModal product={selected} onClose={() => setSelected(null)} />
     </PageTransition>
   )
 }

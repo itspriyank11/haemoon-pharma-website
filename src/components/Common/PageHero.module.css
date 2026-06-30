@@ -1,8 +1,8 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding-top: calc(var(--nav-h) + 56px);
-  padding-bottom: 64px;
+  padding-top: calc(var(--nav-h) + 4px);
+  padding-bottom: 44px;
   background:
     radial-gradient(1000px 480px at 85% -20%, rgba(15, 180, 199, 0.14), transparent 60%),
     radial-gradient(800px 420px at 0% 0%, rgba(11, 110, 143, 0.1), transparent 55%),
@@ -46,36 +46,17 @@
   align-items: center;
 }
 
-.crumb {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-bottom: 22px;
-}
-
-.crumb a {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--text-muted);
-  transition: color 0.25s var(--ease);
-}
-
-.crumb a:hover {
-  color: var(--teal-600);
-}
-
-.crumb span {
-  color: var(--blue-700);
-  font-weight: 600;
-}
-
 .title {
   margin-top: 18px;
-  max-width: 16ch;
+  max-width: none;
+  font-size: clamp(2rem, 5.2vw, 3.85rem);
+}
+
+/* Keep the centered headline on a single line only where it comfortably fits. */
+@media (min-width: 768px) {
+  .inner .title {
+    white-space: nowrap;
+  }
 }
 
 .sub {
@@ -83,4 +64,189 @@
   max-width: 620px;
   font-size: 1.08rem;
   color: var(--text-muted);
+}
+
+/* ============ Split hero (with image) ============ */
+.heroSplit {
+  text-align: left;
+  padding-top: calc(var(--nav-h) + 28px);
+  padding-bottom: 64px;
+}
+
+.split {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 400px);
+  align-items: center;
+  gap: 56px;
+}
+
+.copy {
+  max-width: 600px;
+}
+
+.split .title {
+  margin-top: 20px;
+  line-height: 1.12;
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+}
+
+.split .sub {
+  margin-top: 20px;
+  max-width: 520px;
+}
+
+.desc {
+  margin-top: 14px;
+  max-width: 520px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.points {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  max-width: 520px;
+}
+
+.point {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.pointIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-2, #18c2d4), var(--brand, #0b6e8f));
+  box-shadow: 0 4px 12px rgba(15, 180, 199, 0.32);
+}
+
+@media (max-width: 920px) {
+  .desc,
+  .points {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .points {
+    grid-template-columns: 1fr;
+  }
+}
+
+.visual {
+  position: relative;
+  width: 100%;
+}
+
+.imageWrap {
+  position: relative;
+  border-radius: var(--r-xl);
+  padding: 10px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(238, 246, 249, 0.6));
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-lg);
+}
+
+.heroImage {
+  border-radius: calc(var(--r-xl) - 8px);
+}
+
+.floatCard {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  animation: floaty 5s ease-in-out infinite;
+}
+
+.floatCard strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--heading);
+  line-height: 1.1;
+}
+
+.floatCard small {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.floatTop {
+  top: 30px;
+  left: -26px;
+}
+
+.floatBottom {
+  bottom: 36px;
+  right: -22px;
+  animation-delay: -2.5s;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (max-width: 920px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .copy {
+    max-width: 640px;
+    margin-inline: auto;
+  }
+  .split .sub {
+    margin-inline: auto;
+  }
+  .visual {
+    max-width: 380px;
+    margin-inline: auto;
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .floatCard strong {
+    font-size: 1.1rem;
+  }
+  .floatTop {
+    left: -10px;
+  }
+  .floatBottom {
+    right: -8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floatCard {
+    animation: none;
+  }
 }

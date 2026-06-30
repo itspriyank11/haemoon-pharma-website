@@ -15,12 +15,12 @@ export default function CTA() {
       <div className="container container--wide">
         <Reveal direction="up">
           <div className={styles.banner}>
-            <div
-              className={styles.bg}
-              style={{ backgroundImage: `url(${images.ctaBg})` }}
-              aria-hidden="true"
-            />
             <span className={`blob ${styles.blob}`} />
+
+            {/* Right-side image */}
+            <div className={styles.media} aria-hidden="true">
+              <img src={images.ctaPills} alt="" loading="lazy" />
+            </div>
 
             <div className={styles.content}>
               <span className="eyebrow">Let’s build something healthier</span>
