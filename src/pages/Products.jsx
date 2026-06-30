@@ -15,6 +15,10 @@ import {
   Baby,
   Syringe,
   Sparkles,
+  FlaskConical,
+  ShieldCheck,
+  Microscope,
+  BadgeCheck,
 } from 'lucide-react'
 
 import PageTransition from '../components/Common/PageTransition'
@@ -67,12 +71,27 @@ export default function Products() {
         title="Products engineered for"
         highlight="better health"
         subtitle="Explore our growing range of pharmaceutical and nutraceutical products — crafted to global quality standards and trusted worldwide."
-        description="From iron-rich tonics and multivitamins to liver care, digestive health and women's wellness, every Haemoon formulation is developed with research-backed ingredients and manufactured at WHO-GMP certified facilities. Quality you can feel, in every dose."
-        points={[
-          'WHO-GMP certified manufacturing',
-          'Research-backed formulations',
-          'Strict quality assurance',
-          'Trusted across India',
+        features={[
+          {
+            icon: FlaskConical,
+            title: 'Broad range',
+            text: 'Tonics, vitamins, liver, digestive & women’s care',
+          },
+          {
+            icon: ShieldCheck,
+            title: 'WHO-GMP certified',
+            text: 'Manufactured at certified, audited facilities',
+          },
+          {
+            icon: Microscope,
+            title: 'Research-backed',
+            text: 'Formulated with proven, science-led ingredients',
+          },
+          {
+            icon: BadgeCheck,
+            title: 'Quality assured',
+            text: 'Tested at every stage you can feel & trust',
+          },
         ]}
         image={images.productsHero}
         imageAlt="Haemoon Pharma medicines, capsules and natural extracts"

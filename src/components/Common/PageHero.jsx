@@ -37,6 +37,7 @@ export default function PageHero({
   subtitle,
   description,
   points = [],
+  features = [],
   image,
   imageAlt = '',
   stats = [],
@@ -65,6 +66,39 @@ export default function PageHero({
         <motion.p className={styles.desc} {...rise(0.3)}>
           {description}
         </motion.p>
+      )}
+
+      {features.length > 0 && (
+        <motion.ul
+          className={styles.features}
+          initial="hidden"
+          whileInView="visible"
+          viewport={view}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+          }}
+        >
+          {features.map(({ icon: Icon, title: t, text }) => (
+            <motion.li
+              key={t}
+              className={styles.feature}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+              }}
+              whileHover={{ y: -4 }}
+            >
+              <span className={styles.featureIcon}>
+                <Icon size={20} strokeWidth={2.2} />
+              </span>
+              <div className={styles.featureBody}>
+                <strong>{t}</strong>
+                <span>{text}</span>
+              </div>
+            </motion.li>
+          ))}
+        </motion.ul>
       )}
 
       {points.length > 0 && (
