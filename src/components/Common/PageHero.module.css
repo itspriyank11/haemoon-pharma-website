@@ -306,7 +306,8 @@
   .visual {
     max-width: 380px;
     margin-inline: auto;
-    order: -1;
+    /* On mobile, show the content (text) first, then the image. */
+    margin-top: 8px;
   }
 }
 
