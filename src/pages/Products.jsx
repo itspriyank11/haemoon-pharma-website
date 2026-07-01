@@ -223,13 +223,15 @@ export default function Products() {
               const Icon = divisionIcons[d.icon] || Pill
               return (
                 <StaggerItem key={d.name} className={styles.division}>
-                  <span className={styles.divisionBadge}>
-                    <Sparkles size={12} />
-                    Coming soon
-                  </span>
-                  <span className={styles.divisionIcon}>
-                    <Icon size={26} />
-                  </span>
+                  <div className={styles.divisionTop}>
+                    <span className={styles.divisionIcon}>
+                      <Icon size={26} />
+                    </span>
+                    <span className={styles.divisionBadge}>
+                      <Sparkles size={12} />
+                      Coming soon
+                    </span>
+                  </div>
                   <h3>{d.name}</h3>
                   <p>{d.desc}</p>
                 </StaggerItem>

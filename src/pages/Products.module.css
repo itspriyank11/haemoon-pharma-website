@@ -210,13 +210,21 @@
   opacity: 1;
 }
 
+.divisionTop {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
 .divisionBadge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 5px;
+  margin-top: 4px;
   font-family: var(--font-display);
   font-size: 0.62rem;
   font-weight: 700;
@@ -232,10 +240,10 @@
 .divisionIcon {
   display: inline-grid;
   place-items: center;
+  flex-shrink: 0;
   width: 56px;
   height: 56px;
   border-radius: 15px;
-  margin-bottom: 18px;
   color: #fff;
   background: var(--grad-brand);
   box-shadow: var(--shadow-brand);
@@ -276,7 +284,7 @@
   color: var(--text-strong);
 }
 
-/* ---- Responsive ---- */
+/* ---- Responsive (ordered largest → smallest) ---- */
 @media (max-width: 1080px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
@@ -286,20 +294,20 @@
   }
 }
 
-@media (max-width: 720px) {
-  .divisions {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 860px) {
   .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .divisions {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
   .grid {
+    grid-template-columns: 1fr;
+  }
+  .divisions {
     grid-template-columns: 1fr;
   }
   .note {
