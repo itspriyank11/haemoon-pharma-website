@@ -122,10 +122,26 @@
   color: var(--text-muted);
 }
 
+.submitError {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  background: rgba(210, 58, 99, 0.08);
+  border: 1px solid rgba(210, 58, 99, 0.25);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #d23a63;
+}
+
 .submit {
   display: flex;
   margin-top: 24px;
   padding-inline: 38px;
+}
+
+.submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 /* ---- Success state ---- */

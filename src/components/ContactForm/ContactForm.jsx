@@ -6,6 +6,12 @@ import styles from './ContactForm.module.css'
 
 const INITIAL = { name: '', email: '', phone: '', message: '' }
 
+// Web3Forms access key — set VITE_WEB3FORMS_KEY in your .env / Vercel env vars.
+// The placeholder value counts as "not configured" so demo mode kicks in.
+const RAW_KEY = import.meta.env.VITE_WEB3FORMS_KEY
+const WEB3FORMS_KEY =
+  RAW_KEY && RAW_KEY !== 'your-web3forms-access-key-here' ? RAW_KEY : ''
+
 const validators = {
   name: (v) => (v.trim().length < 2 ? 'Please enter your name.' : ''),
   email: (v) =>
@@ -37,6 +43,8 @@ export default function ContactForm({ withHeader = false }) {
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const validateField = (name, value) =>
     validators[name] ? validators[name](value) : ''
@@ -55,8 +63,10 @@ export default function ContactForm({ withHeader = false }) {
     setErrors((err) => ({ ...err, [name]: validateField(name, value) }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmitError('')
+
     const nextErrors = {}
     Object.keys(validators).forEach((key) => {
       const msg = validateField(key, values[key])
@@ -67,11 +77,52 @@ export default function ContactForm({ withHeader = false }) {
       Object.keys(values).reduce((acc, k) => ({ ...acc, [k]: true }), {}),
     )
 
-    if (Object.keys(nextErrors).length === 0) {
-      // TODO: connect to a backend / email service here.
+    if (Object.keys(nextErrors).length > 0) return
+
+    // No key configured yet — fall back to the demo success state so local
+    // builds still work, but log a clear warning.
+    if (!WEB3FORMS_KEY) {
+      console.warn(
+        'VITE_WEB3FORMS_KEY is not set — the contact form is in demo mode and will not deliver messages.',
+      )
       setSent(true)
       setValues(INITIAL)
       setTouched({})
+      return
+    }
+
+    setSending(true)
+    try {
+      const formData = new FormData()
+      formData.append('access_key', WEB3FORMS_KEY)
+      formData.append('subject', 'New enquiry from Haemoon Pharma website')
+      formData.append('from_name', 'Haemoon Pharma Website')
+      formData.append('name', values.name)
+      formData.append('email', values.email)
+      formData.append('phone', values.phone || 'Not provided')
+      formData.append('message', values.message || 'No message provided')
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        setSent(true)
+        setValues(INITIAL)
+        setTouched({})
+      } else {
+        setSubmitError(
+          data.message || 'Something went wrong. Please try again.',
+        )
+      }
+    } catch {
+      setSubmitError(
+        'Could not send your message. Please check your connection and try again.',
+      )
+    } finally {
+      setSending(false)
     }
   }
 
@@ -178,8 +229,18 @@ export default function ContactForm({ withHeader = false }) {
               <span className={styles.req}>*</span> Mandatory fields to be filled
             </p>
 
-            <button type="submit" className={`btn ${styles.submit}`}>
-              Submit Now
+            {submitError && (
+              <p className={styles.submitError} role="alert">
+                {submitError}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              className={`btn ${styles.submit}`}
+              disabled={sending}
+            >
+              {sending ? 'Sending…' : 'Submit Now'}
               <Send size={17} />
             </button>
           </motion.form>
