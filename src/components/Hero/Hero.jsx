@@ -54,8 +54,8 @@ export default function Hero() {
           </motion.span>
 
           <motion.h1 className={styles.title} variants={item}>
-            Quality healthcare,{' '}
-            <span className="gradient-text">made accessible</span>
+            Where science meets trust and{' '}
+            <span className="gradient-text">better health</span>
           </motion.h1>
 
           <motion.p className={styles.sub} variants={item}>
