@@ -83,14 +83,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /*
+   * No global `scroll-behavior: smooth` — it would override the instant
+   * scroll-to-top on route changes and make new pages animate up from the
+   * previous scroll position. Smooth scrolling is applied explicitly in JS
+   * (e.g. the footer "back to top" button) where it's actually wanted.
+   */
   -webkit-text-size-adjust: 100%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
 }
 
 body {

@@ -30,7 +30,7 @@ const item = {
 const trustChips = [
   { icon: ShieldCheck, label: 'WHO-GMP Certified' },
   { icon: Microscope, label: 'Research Driven' },
-  { icon: Globe2, label: '40+ Countries' },
+  { icon: Globe2, label: 'Pan-India Reach' },
 ]
 
 export default function Hero() {
@@ -54,14 +54,15 @@ export default function Hero() {
           </motion.span>
 
           <motion.h1 className={styles.title} variants={item}>
-            Where science meets{' '}
-            <span className="gradient-text">quality medicine</span> manufacturing
+            Quality healthcare,{' '}
+            <span className="gradient-text">made accessible</span>
           </motion.h1>
 
           <motion.p className={styles.sub} variants={item}>
-            {company.name} manufactures research-driven pharmaceutical and
-            nutraceutical products under WHO-GMP standards — formulated,
-            tested and trusted by families, clinicians and partners worldwide.
+            {company.name} brings research-driven pharmaceutical and
+            nutraceutical products to market — developed with care, produced at
+            WHO-GMP certified facilities, and trusted by families, clinicians
+            and partners worldwide.
           </motion.p>
 
           <motion.div className={styles.actions} variants={item}>

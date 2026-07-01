@@ -81,9 +81,9 @@ const PILLARS = [
 ]
 
 const ABOUT_POINTS = [
-  'WHO-GMP & ISO certified manufacturing',
-  'In-house research & quality laboratories',
-  'Exported to 40+ countries worldwide',
+  'Produced at WHO-GMP certified facilities',
+  'Research-backed, quality-tested formulations',
+  'Growing pan-India distribution network',
   'Trusted by clinicians, families & partners',
 ]
 
@@ -126,10 +126,10 @@ export default function About() {
 
               <Reveal direction="up" delay={0.1}>
                 <p className={styles.aboutText}>
-                  From pediatric nutrition to advanced nutraceuticals, our
-                  products are developed by experts, manufactured to global
+                  From everyday wellness to advanced nutraceuticals, our
+                  products are developed by experts, produced to global quality
                   standards, and trusted by healthcare professionals and
-                  families across the world.
+                  families across the country.
                 </p>
 
                 <ul className={styles.points}>
