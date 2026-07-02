@@ -81,12 +81,12 @@ export const navLinks = [
 ]
 
 export const productLinks = [
-  { label: "Women's Health", to: '/products' },
-  { label: 'Vitamins & Nutrition', to: '/products' },
-  { label: 'Nutraceuticals', to: '/products' },
-  { label: 'Wellness & Care', to: '/products' },
-  { label: 'Haemo Tone Syrup', to: '/products' },
-  { label: 'Livohae Tablets', to: '/products' },
+  { label: "Women's Health", to: '/products?category=womens' },
+  { label: 'Vitamins & Nutrition', to: '/products?category=vitamins' },
+  { label: 'Nutraceuticals', to: '/products?category=nutraceuticals' },
+  { label: 'Wellness & Care', to: '/products?category=wellness' },
+  { label: 'Haemo Tone Syrup', to: '/products?product=p2' },
+  { label: 'Livohae Tablets', to: '/products?product=p5' },
 ]
 
 export const socials = [

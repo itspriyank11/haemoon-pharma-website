@@ -118,6 +118,44 @@
   gap: 24px;
 }
 
+/* Deep-linked product (from footer / share links): pulse a glow ring so the
+   card catches the eye once it scrolls into view, then fades back to normal. */
+.cardHighlight {
+  border-radius: var(--r-lg);
+  animation: cardPulse 2.6s var(--ease) 1;
+  scroll-margin-top: 100px;
+}
+
+@keyframes cardPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(11, 110, 143, 0);
+    transform: scale(1);
+  }
+  15% {
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--teal-500) 60%, transparent),
+      0 16px 40px rgba(11, 110, 143, 0.35);
+    transform: scale(1.03);
+  }
+  70% {
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--teal-500) 45%, transparent),
+      0 16px 40px rgba(11, 110, 143, 0.28);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(11, 110, 143, 0);
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardHighlight {
+    animation: none;
+    box-shadow: 0 0 0 3px var(--teal-500);
+  }
+}
+
 /* ---- Empty state ---- */
 .empty {
   text-align: center;

@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useMemo, useState, useEffect, useRef } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search,
@@ -67,10 +67,72 @@ const divisionIcons = {
   syringe: Syringe,
 }
 
+/** Valid category ids (excluding the "all" pseudo-category). */
+const categoryIds = new Set(categories.map((c) => c.id).filter((id) => id !== 'all'))
+
 export default function Products() {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [query, setQuery] = useState('')
   const [active, setActive] = useState('all')
   const [selected, setSelected] = useState(null)
+  // Ids of products to pulse-highlight after a deep-link (a category link
+  // highlights every product in that category; a product link highlights one).
+  const [highlighted, setHighlighted] = useState([])
+  const toolbarRef = useRef(null)
+
+  // Apply ?category= / ?product= deep-links from the footer (and elsewhere).
+  // Runs on every searchParams change — not just mount — so clicking a footer
+  // link while already on this page still filters/highlights correctly.
+  useEffect(() => {
+    const cat = searchParams.get('category')
+    const prod = searchParams.get('product')
+    if (!cat && !prod) return
+
+    // Clear any current glow first so re-clicking the same link replays it.
+    setHighlighted([])
+
+    if (cat && categoryIds.has(cat)) {
+      setActive(cat)
+      setQuery('')
+      const ids = products.filter((p) => p.category === cat).map((p) => p.id)
+      requestAnimationFrame(() => setHighlighted(ids))
+    }
+
+    if (prod) {
+      const match = products.find((p) => p.id === prod)
+      if (match) {
+        // Narrow the grid to just this product (via the search box) so it's the
+        // only card shown — reliably visible and unmistakable — then pulse it.
+        setActive('all')
+        setQuery(match.name)
+        requestAnimationFrame(() => setHighlighted([prod]))
+      }
+    }
+
+    // Consume the params so refresh/back doesn't re-trigger the effect.
+    setSearchParams({}, { replace: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams])
+
+  // Bring the results grid up to the top of the viewport and clear the glow
+  // after a moment. Runs whenever a fresh set of products is highlighted.
+  useEffect(() => {
+    if (highlighted.length === 0) return
+
+    const timers = []
+    const scrollToGrid = () => {
+      const el = toolbarRef.current
+      if (!el) return
+      const target = el.getBoundingClientRect().top + window.scrollY - 90
+      window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' })
+    }
+
+    timers.push(setTimeout(scrollToGrid, 250))
+    timers.push(setTimeout(scrollToGrid, 650))
+    timers.push(setTimeout(() => setHighlighted([]), 3200))
+
+    return () => timers.forEach(clearTimeout)
+  }, [highlighted])
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -129,7 +191,7 @@ export default function Products() {
       />
 
       {/* ---- Toolbar ---- */}
-      <section className="section section--tight">
+      <section className="section section--tight" ref={toolbarRef}>
         <div className="container container--wide">
           <div className={styles.toolbar}>
             <div className={styles.searchWrap}>
@@ -183,6 +245,11 @@ export default function Products() {
                   <motion.div
                     key={p.id}
                     layout
+                    className={
+                      highlighted.includes(p.id)
+                        ? styles.cardHighlight
+                        : undefined
+                    }
                     initial={{ opacity: 0, scale: 0.92, y: 28 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.2 }}
