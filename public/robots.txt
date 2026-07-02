@@ -1,0 +1,7 @@
+# Haemoon Pharma — robots.txt
+# Allow all crawlers full access.
+User-agent: *
+Allow: /
+
+# When the live domain is set, this points crawlers to the sitemap.
+Sitemap: https://haemoonpharma.com/sitemap.xml

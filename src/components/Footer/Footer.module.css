@@ -46,18 +46,18 @@
   place-items: center;
   border-radius: 12px;
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--brand, rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.14);
   transition:
     transform 0.3s var(--ease),
-    background 0.3s var(--ease),
+    filter 0.3s var(--ease),
     box-shadow 0.3s var(--ease);
 }
 
 .socials a:hover {
   transform: translateY(-4px);
-  background: var(--grad-brand);
-  box-shadow: var(--shadow-teal);
+  filter: brightness(1.12);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
 }
 
 .linkCol h4,

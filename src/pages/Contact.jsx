@@ -7,6 +7,7 @@ import timingIcon from '../assets/icons/loc-timing.svg'
 
 import PageTransition from '../components/Common/PageTransition'
 import PageHero from '../components/Common/PageHero'
+import Seo from '../components/Common/Seo'
 import Reveal from '../components/Common/Reveal'
 import { StaggerGroup, StaggerItem } from '../components/Common/StaggerGroup'
 import ContactForm from '../components/ContactForm/ContactForm'
@@ -44,6 +45,11 @@ const CONTACT_CARDS = [
 export default function Contact() {
   return (
     <PageTransition>
+      <Seo
+        title="Contact Us"
+        description="Get in touch with Haemoon Pharma Pvt. Ltd. — reach out about our products, partnerships or manufacturing. Registered office in Rairangpur, Mayurbhanj, Odisha, India."
+      />
+
       <PageHero
         eyebrow="Get in Touch"
         title="We’d love to"

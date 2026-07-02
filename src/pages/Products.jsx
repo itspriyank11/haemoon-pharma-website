@@ -23,6 +23,7 @@ import {
 
 import PageTransition from '../components/Common/PageTransition'
 import PageHero from '../components/Common/PageHero'
+import Seo from '../components/Common/Seo'
 import SectionHeading from '../components/Common/SectionHeading'
 import Reveal from '../components/Common/Reveal'
 import { StaggerGroup, StaggerItem } from '../components/Common/StaggerGroup'
@@ -32,7 +33,27 @@ import CTA from '../components/CTA/CTA'
 
 import { products, categories, therapeuticDivisions } from '../data/products'
 import { images } from '../data/images'
+import { company } from '../data/site'
 import styles from './Products.module.css'
+
+/** ItemList structured data for the full product catalogue. */
+const productsJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `${company.name} — Product Range`,
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      name: p.name,
+      description: p.description,
+      category: p.composition,
+      brand: { '@type': 'Brand', name: company.shortName },
+    },
+  })),
+}
 
 // Map data icon keys to lucide components
 const divisionIcons = {
@@ -66,6 +87,12 @@ export default function Products() {
 
   return (
     <PageTransition>
+      <Seo
+        title="Our Products"
+        description="Explore Haemoon Pharma's range of pharmaceutical & nutraceutical products — calcium, iron & antacid formulations, antibiotics, liver support, multivitamins, syrups, tablets & capsules."
+        jsonLd={productsJsonLd}
+      />
+
       <PageHero
         eyebrow="Our Portfolio"
         title="Products engineered for"
@@ -96,8 +123,8 @@ export default function Products() {
         image={images.productsHero}
         imageAlt="Haemoon Pharma medicines, capsules and natural extracts"
         stats={[
-          { value: '8+', label: 'Products' },
-          { value: '4', label: 'Categories' },
+          { value: '10+', label: 'Products' },
+          { value: '4+', label: 'Categories' },
         ]}
       />
 

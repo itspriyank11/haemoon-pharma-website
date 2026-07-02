@@ -24,6 +24,15 @@ const socialIcon = {
   instagram: InstagramIcon,
 }
 
+/** Real brand colours per platform (Instagram uses its signature gradient). */
+const socialBrand = {
+  linkedin: '#0A66C2',
+  twitter: '#101010',
+  facebook: '#1877F2',
+  instagram:
+    'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)',
+}
+
 export default function Footer() {
   const scrollTop = () => {
     const prefersReduced = window.matchMedia(
@@ -53,6 +62,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={s.label}
+                    style={{ '--brand': socialBrand[s.icon] }}
                   >
                     <Icon size={18} />
                   </a>
@@ -155,9 +165,9 @@ export default function Footer() {
             </p>
           </div>
           <div className={styles.legal}>
-            <a href="#privacy">Privacy Policy</a>
+            <Link to="/privacy">Privacy Policy</Link>
             <span aria-hidden="true">•</span>
-            <a href="#terms">Terms of Service</a>
+            <Link to="/terms">Terms of Service</Link>
           </div>
         </div>
       </div>

@@ -19,6 +19,11 @@ import livohae from '../assets/images/rx-livohae.jpeg'
 import dizzohae from '../assets/images/rx-dizzohae.jpeg'
 import haemoraft from '../assets/images/rx-haemoraft.jpeg'
 import haevit from '../assets/images/rx-haevit.jpeg'
+import calhaeD3 from '../assets/images/rx-calhae-d3.jpeg'
+import cefhaeO from '../assets/images/rx-cefhae-o.jpeg'
+import esmohaeD from '../assets/images/rx-esmohae-d.jpeg'
+import haemoOnXt from '../assets/images/rx-haemo-on-xt.jpeg'
+import pantohaeD from '../assets/images/rx-pantohae-d.jpeg'
 
 // Contact "Connect with us" panel image
 import connectImg from '../assets/images/connect.jpg'
@@ -86,7 +91,16 @@ export const productImages = {
   p6: dizzohae, // Dizzohae — Multi-enzyme Tablets
   p7: haemoraft, // Haemoraft — Antacid Oral Suspension
   p8: haevit, // Haevit — Multivitamin Soft Gelatin Capsules
+
+  p9: calhaeD3, // Calhae-D3 — Calcium Carbonate + Vitamin D3 Tablets
+  p10: cefhaeO, // Cefhae-O — Cefixime + Ofloxacin Tablets
+  p11: esmohaeD, // Esmohae D — Esomeprazole + Domperidone SR Capsules
+  p12: haemoOnXt, // Haemo On-XT — Ferrous Ascorbate + Folic Acid + Zinc Tablets
+  p13: pantohaeD, // Pantohae D — Pantoprazole + Domperidone Capsules
 }
 
 /** Product ids whose image is a packshot (render "contained" on white). */
-export const packshotIds = new Set(['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'])
+export const packshotIds = new Set([
+  'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8',
+  'p9', 'p10', 'p11', 'p12', 'p13',
+])

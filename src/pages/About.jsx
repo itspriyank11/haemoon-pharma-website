@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 
 import PageTransition from '../components/Common/PageTransition'
+import Seo from '../components/Common/Seo'
 import Reveal from '../components/Common/Reveal'
 import SectionHeading from '../components/Common/SectionHeading'
 import { StaggerGroup, StaggerItem } from '../components/Common/StaggerGroup'
@@ -94,6 +95,11 @@ export default function About() {
 
   return (
     <PageTransition>
+      <Seo
+        title="Haemoon Pharma Pvt. Ltd. — Advancing Health Through Science"
+        description="Haemoon Pharma is a research-driven pharmaceutical & nutraceutical company delivering WHO-GMP quality-assured medicines — tablets, capsules, syrups & healthcare products across India."
+      />
+
       {/* ---- HERO ---- */}
       <Hero />
 

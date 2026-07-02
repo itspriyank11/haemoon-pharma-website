@@ -2,7 +2,15 @@ import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Check, Package, FlaskConical, Stethoscope, ArrowRight } from 'lucide-react'
+import {
+  X,
+  Check,
+  Package,
+  FlaskConical,
+  Stethoscope,
+  Activity,
+  ArrowRight,
+} from 'lucide-react'
 
 import SmartImage from '../Common/SmartImage'
 import { categoryMap } from '../../data/products'
@@ -133,6 +141,19 @@ export default function ProductModal({ product, onClose }) {
                         <Check size={16} />
                         {b}
                       </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {product.indications?.length > 0 && (
+                <div className={styles.block}>
+                  <h3>
+                    <Activity size={16} /> Indications
+                  </h3>
+                  <ul className={styles.indications}>
+                    {product.indications.map((ind) => (
+                      <li key={ind}>{ind}</li>
                     ))}
                   </ul>
                 </div>

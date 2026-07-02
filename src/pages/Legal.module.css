@@ -1,0 +1,122 @@
+/**
+ * Shared styling for the long-form legal pages (Privacy Policy, Terms of
+ * Service). A single centered prose column beneath the standard PageHero.
+ */
+
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--teal-600);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  margin-bottom: 34px;
+}
+
+.intro {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.section {
+  margin-top: 34px;
+}
+
+.section h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  color: var(--heading);
+  margin-bottom: 12px;
+}
+
+.section h2 .num {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent, var(--teal-600));
+}
+
+.section p {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 4px 0 14px;
+}
+
+.section li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.section li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+}
+
+.section a {
+  color: var(--teal-600);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s var(--ease);
+}
+
+.section a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* Contact card at the end of the policy */
+.contactCard {
+  margin-top: 40px;
+  padding: 26px 28px;
+  border-radius: var(--r-lg);
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.contactCard h3 {
+  font-size: 1.1rem;
+  color: var(--heading);
+  margin-bottom: 10px;
+}
+
+.contactCard p {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+
+.contactCard strong {
+  color: var(--text-strong);
+}

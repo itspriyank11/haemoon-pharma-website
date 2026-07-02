@@ -3,6 +3,17 @@
  * Update these once and they propagate to the navbar, footer and contact page.
  */
 
+/**
+ * Public site URL — used for canonical links, Open Graph, sitemap and JSON-LD.
+ * When the real domain goes live, update this ONE value (and public/robots.txt
+ * + public/sitemap.xml) and every SEO tag will point to the correct origin.
+ * No trailing slash.
+ */
+export const SITE_URL = 'https://haemoonpharma.com'
+
+/** Default social-share image (relative to SITE_URL). */
+export const OG_IMAGE = '/og-image.jpg'
+
 export const company = {
   name: 'Haemoon Pharma Pvt. Ltd.',
   shortName: 'Haemoon',
