@@ -186,7 +186,7 @@ export default function Products() {
         imageAlt="Haemoon Pharma medicines, capsules and natural extracts"
         stats={[
           { value: '10+', label: 'Products' },
-          { value: '4+', label: 'Categories' },
+          { value: '5+', label: 'Categories' },
         ]}
       />
 

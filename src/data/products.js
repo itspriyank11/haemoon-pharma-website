@@ -13,6 +13,7 @@ export const categories = [
   { id: 'womens', name: "Women's Health", accent: '#e0599b' },
   { id: 'vitamins', name: 'Vitamins & Nutrition', accent: '#f5a623' },
   { id: 'nutraceuticals', name: 'Nutraceuticals', accent: '#7c5cff' },
+  { id: 'gastro', name: 'Gastroenterology', accent: '#e07a3e' },
   { id: 'wellness', name: 'Wellness & Care', accent: '#0b6e8f' },
 ]
 
@@ -194,7 +195,7 @@ export const products = [
   {
     id: 'p6',
     name: 'Dizzohae',
-    category: 'nutraceuticals',
+    category: 'gastro',
     tagline: 'Complete digestive enzyme support',
     composition:
       'Protease, Amylase, Lipase, Cellulase, Alpha Galactosidase, Hemicellulase & Phytase Multi-enzyme Tablets',
@@ -214,7 +215,7 @@ export const products = [
   {
     id: 'p7',
     name: 'Haemoraft',
-    category: 'wellness',
+    category: 'gastro',
     tagline: 'The raft-forming antacid — acts faster, longer, safer',
     composition:
       'Sodium Alginate 500 mg, Sodium Bicarbonate 213 mg & Calcium Carbonate 325 mg (per 10 ml) Oral Suspension',
@@ -295,7 +296,7 @@ export const products = [
   {
     id: 'p11',
     name: 'Esmohae D',
-    category: 'wellness',
+    category: 'gastro',
     tagline: 'When acid reflux disturbs',
     composition: 'Esomeprazole 40 mg + Domperidone 30 mg SR Capsules',
     description:
@@ -348,7 +349,7 @@ export const products = [
   {
     id: 'p13',
     name: 'Pantohae D',
-    category: 'wellness',
+    category: 'gastro',
     tagline: 'Fast relief in hyper-acidic reflux',
     composition:
       'Pantoprazole (Gastro-Resistant) 40 mg + Domperidone (Prolonged Release) 30 mg Capsules IP',
@@ -396,13 +397,19 @@ export const featuredCategories = [
     id: 'nutraceuticals',
     name: 'Nutraceuticals',
     description:
-      'Liver-support and multi-enzyme formulations for healthy digestion, detoxification and active recovery.',
+      'Science-led liver-support and antioxidant formulations for detoxification, cellular health and active recovery.',
+  },
+  {
+    id: 'gastro',
+    name: 'Gastroenterology',
+    description:
+      'Antacids, acid-reflux and digestive-enzyme formulations for lasting relief from acidity, GERD and indigestion.',
   },
   {
     id: 'wellness',
     name: 'Wellness & Care',
     description:
-      'Everyday relief essentials — from pain and fever to acidity and indigestion — you can rely on.',
+      'Everyday relief essentials — from pain and fever to anti-infective therapy — you can rely on.',
   },
 ]
 
@@ -416,7 +423,6 @@ export const featuredCategories = [
 export const therapeuticDivisions = [
   { name: 'Cardiac Care', icon: 'heartPulse', desc: 'Cardiovascular & blood-pressure therapies' },
   { name: 'Diabetes Care', icon: 'droplets', desc: 'Anti-diabetic & metabolic management' },
-  { name: 'Gastroenterology', icon: 'pill', desc: 'Digestive & gut-health formulations' },
   { name: 'Neurology', icon: 'brain', desc: 'Neuro & cognitive-support range' },
   { name: 'Nephrology', icon: 'activity', desc: 'Kidney & renal-care therapies' },
   { name: 'Hormonal', icon: 'atom', desc: 'Hormonal & endocrine treatments' },
