@@ -9,7 +9,7 @@
  * + public/sitemap.xml) and every SEO tag will point to the correct origin.
  * No trailing slash.
  */
-export const SITE_URL = 'https://haemoonpharma.com'
+export const SITE_URL = 'https://www.heamoonpharma.com'
 
 /** Default social-share image (relative to SITE_URL). */
 export const OG_IMAGE = '/og-image.jpg'

@@ -3,5 +3,5 @@
 User-agent: *
 Allow: /
 
-# When the live domain is set, this points crawlers to the sitemap.
-Sitemap: https://haemoonpharma.com/sitemap.xml
+# Points crawlers to the sitemap.
+Sitemap: https://www.heamoonpharma.com/sitemap.xml
