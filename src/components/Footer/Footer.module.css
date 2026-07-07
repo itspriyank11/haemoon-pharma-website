@@ -128,6 +128,9 @@
 
 .contactCol a {
   transition: color 0.25s var(--ease);
+  /* Allow long email addresses to wrap instead of overflowing the column. */
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 .contactCol a:hover {

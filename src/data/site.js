@@ -19,7 +19,7 @@ export const company = {
   shortName: 'Haemoon',
   legalName: 'Haemoon Pharma Private Limited',
   tagline: 'Advancing Health Through Science',
-  email: 'care@haemoonpharma.com',
+  email: 'heamoonpharma1960@heamoonpharma.com',
   phone: '+91 98765 43210', // TODO: replace with official phone number
   phoneHref: '+919876543210',
   timing: '9:30 AM – 6:30 PM',

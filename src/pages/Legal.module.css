@@ -115,6 +115,8 @@
   line-height: 1.7;
   color: var(--text);
   margin: 0;
+  /* Long email addresses wrap instead of overflowing the card. */
+  overflow-wrap: anywhere;
 }
 
 .contactCard strong {

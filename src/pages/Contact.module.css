@@ -89,6 +89,8 @@
   color: var(--text-muted);
   font-size: 0.96rem;
   line-height: 1.5;
+  /* Long email addresses wrap instead of overflowing the card. */
+  overflow-wrap: anywhere;
 }
 
 a.findItem h3 {
